@@ -5,9 +5,6 @@
 {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}
-        <!-- question.id jer gleda koji je id preko API-a od djanga, kao u django tutorial pt2
-        <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li> 
-        satari hardocoded primjer -->
         <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
     {% endfor %}
     </ul>

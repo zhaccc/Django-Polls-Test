@@ -3,7 +3,6 @@ import datetime
 from django.db import models
 from django.utils import timezone # ne zaboravi import za was_published_recently
 
-# Create your models here.
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
@@ -14,7 +13,6 @@ class Question(models.Model):
     def was_published_recently(self):
         """Gleda ako je pub_date veci od timezone.now - 1 dan.
         Dakle ako je pub_date noviji od jucer vraca True."""
-        # return self.pub_date >= timezone.now() - datetime.timedelta(days=1) -> old /w future bug
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.pub_date <= now
     """
@@ -27,7 +25,7 @@ class Question(models.Model):
 
 
 class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE) # sadrzi vise opcija i veze se na Question! Takodjer ovako se povezu ove dvije klase (HAS-A relationship)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
     

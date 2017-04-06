@@ -1,7 +1,5 @@
 from django.test import TestCase
 
-# Create your tests here.
-
 import datetime
 
 from django.utils import timezone
@@ -139,7 +137,7 @@ class QuestionIndexDetailTests(TestCase):
         """
         future_question = create_question(question_text="Future question.", days=30)
         create_choice(created_question=future_question, choice_text='Future choice.')
-        url = reverse('polls:detail', args=(future_question.id,)) # pazi zarez
+        url = reverse('polls:detail', args=(future_question.id,))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
         
@@ -150,7 +148,7 @@ class QuestionIndexDetailTests(TestCase):
         """
         past_question = create_question(question_text="Past question.", days=-5)
         create_choice(created_question=past_question, choice_text='Past choice.')
-        url = reverse('polls:detail', args=(past_question.id,)) # pazi zarez
+        url = reverse('polls:detail', args=(past_question.id,))
         response = self.client.get(url)
         self.assertContains(response, past_question.question_text)
         
@@ -160,7 +158,7 @@ class QuestionIndexDetailTests(TestCase):
         return a 404 not found.
         """
         future_question = create_question(question_text="Future question.", days=30)
-        url = reverse('polls:detail', args=(future_question.id,)) # pazi zarez
+        url = reverse('polls:detail', args=(future_question.id,))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
         
